@@ -16,7 +16,7 @@ Inital Roles:
 - https://codegenes.net/2020/07/whack-a-mole-game-using-javascript/
 
 
-## FRONT_END
+## FRONT_END: Arja, Michael
 - review code from video
 - make style changes
     - have duke devil be the mole
