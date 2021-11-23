@@ -1,3 +1,3 @@
 # Planning for A Team
 
-Team Members: Sam Anthony, 
+Team Members: Sam Anthony, Arja Kaushal
