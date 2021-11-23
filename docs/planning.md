@@ -2,6 +2,11 @@
 
 Team Members: Sam Anthony, Arja Kaushal, Sarah McCormick, Michael Alcorn
 
+Inital Roles:
+- Back End: Sam Anthony
+- Game Mechanics: Sarah McCormick
+- Front End & Design: Arja Kaushal and Michael Alcorn
+
 ## WACK-A-MOLE Game Inspiration Links
 - https://www.youtube.com/watch?v=lhNdUVh3qCc&t=1102s Time stamp: 11:39-19:47
 - https://jsbeginners.com/whack-a-mole-game-javascript-project/
@@ -18,9 +23,9 @@ Team Members: Sam Anthony, Arja Kaushal, Sarah McCormick, Michael Alcorn
     - change the font
     - add bulma framework
 
-## BACK_END
+## BACK_END: Sam
 - need to make database with usernames, passwords, high score
 
-## GAME
-- copy from video
-
+## GAME: Sarah
+- have duke devil be the mole
+- review code from video
