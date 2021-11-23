@@ -2,8 +2,13 @@
 
 Team Members: Sam Anthony, Arja Kaushal, Sarah McCormick, Michael Alcorn
 
-## [WACK-A-MOLE Game](https://www.youtube.com/watch?v=lhNdUVh3qCc&t=1102s) Time stamp: 11:39-19:47
-
+## WACK-A-MOLE Game Inspiration Links
+- https://www.youtube.com/watch?v=lhNdUVh3qCc&t=1102s Time stamp: 11:39-19:47
+- https://jsbeginners.com/whack-a-mole-game-javascript-project/
+- https://medium.com/@divyamcm/whack-a-mole-game-using-html-css-and-javascript-84b108ec5c8e
+- https://learnersbucket.com/tutorials/js-projects/whack-a-mole-game-in-javascript/
+- https://www.discoverdev.io/blog/series/js30/30-whack-a-mole/
+- https://codegenes.net/2020/07/whack-a-mole-game-using-javascript/
 
 
 ## FRONT_END
