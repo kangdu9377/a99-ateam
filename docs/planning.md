@@ -22,6 +22,7 @@ Inital Roles:
     - have duke devil be the mole
     - change the font
     - add bulma framework
+- form for creating/updating users
 
 ## BACK_END: Sam
 - need to make database with usernames, passwords, high score
