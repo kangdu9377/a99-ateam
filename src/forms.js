@@ -1,5 +1,8 @@
 window.addEventListener("load", function () {
-    
+    //  Global User Vars
+    var thisUser = null;
+    var loggedIn;
+
     // New User Creation
     function sendData( form ) {
         const sendRequest = new XMLHttpRequest();
@@ -14,10 +17,23 @@ window.addEventListener("load", function () {
         sendRequest.send( signupInfo );
     }
 
+    function newUserValid() {
+        if(document.getElementById("signup").user.value == "" | document.getElementById("signup").email.value == "" | document.getElementById("signup").pass.value == ""){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     const newuser = document.getElementById("signup");
     newuser.addEventListener("submit", function(event){
         event.preventDefault();
-        sendData(this);
+        if(newUserValid()){
+            sendData(this);
+        } else {
+            alert("Username, Email, and Password are Required!")
+        }
+        
     });
 
     // Delete User
@@ -30,6 +46,7 @@ window.addEventListener("load", function () {
         sendRequest.addEventListener("load", function(event){
             // alert('Your account was deleted!');
         });
+
         sendRequest.open("DELETE", "http://localhost:5000/app/deleting/user");
         sendRequest.send( deleteInfo );
     }
@@ -96,7 +113,24 @@ window.addEventListener("load", function () {
         sendRequest.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 // alert(sendRequest.responseText);
-                document.getElementById("myData").innerHTML = sendRequest.responseText;
+                // document.getElementById("myData").innerHTML = sendRequest.response;
+                thisUser = JSON.parse(sendRequest.response);
+                if(loggedIn){
+                    alert("Logging Out");
+                    thisUser = null;
+                    loggedIn = false;
+                    document.getElementById("login").value = "Login";
+                    document.getElementById("greeting").innerHTML = thisUser;
+                } else {
+                    if(thisUser.name == null | thisUser.name == ""){
+                        document.getElementById("greeting").innerHTML = "Welcome to Whack-a-Devil, " + thisUser.user;
+                    } else {
+                        document.getElementById("greeting").innerHTML = "Welcome to Whack-a-Devil, " + thisUser.name;
+                    };
+                    document.getElementById("login").value = "Logout";
+                    loggedIn = true;
+                    alert("Login successful!")
+                }
             }
         }
         sendRequest.open("POST", "http://localhost:5000/app/login/user");
@@ -106,6 +140,29 @@ window.addEventListener("load", function () {
     const selfUser = document.getElementById("loginForm");
     selfUser.addEventListener("submit", function(event){
         event.preventDefault();
-        getUserdata(this);
+        if(loggedIn){
+            alert("Logging Out");
+            thisUser = null;
+            loggedIn = false;
+            document.getElementById("login").value = "Login";
+            document.getElementById("greeting").innerHTML = thisUser;
+            this.reset();
+        } else {
+            getUserdata(this);
+        }
+    });
+
+    // Show User Data
+    const showData = document.getElementById("showData");
+    showData.addEventListener("click", function(event){
+        event.preventDefault();
+        if(loggedIn){
+            document.getElementById("profileData").innerHTML = `Username: ${thisUser.user}, 
+            Email: ${thisUser.email}, 
+            Name: ${thisUser.name},
+            Year: ${thisUser.year}`
+        } else {
+            alert("You must log in to see profile!")
+        }
     });
 });
