@@ -25,7 +25,8 @@ Inital Roles:
 - form for creating/updating users
 
 ## BACK_END: Sam
-- need to make database with usernames, passwords, high score
+- need to make database with usernames, passwords, other info
+- need to make database of high scores
 
 ## GAME: Sarah
 - have duke devil be the mole
