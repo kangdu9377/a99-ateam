@@ -1,5 +1,6 @@
 const square = document.querySelectorAll('.square')
-const blue_devil = querySelectorAll('.blue_devil')
+const blue_devil = document.querySelectorAll('.blue_devil')
+const timeLeft = document.querySelector('#seconds-left')
 let score = document.querySelector('#score')
 
 let result = 0
@@ -10,25 +11,26 @@ function randomSquare() {
         className.classList.remove('blue_devil')
     })
     
-    let randomPosition = square[Math.random() * 9]
-    randomPosition.add('blue_devil')
+    let randomPosition = square[Math.floor(Math.random() * 9)]
+    randomPosition.classList.add('blue_devil')
 
     //assin the id of the randomPosition to hitPosition for us to use later
     hitPosition = randomPosition.id
+}
 
-    square.forEach(id => {
-        id.addEventListener('mouseup', () => {
+square.forEach(id => {
+    id.addEventListener('mouseup', () => {
+        if(id.id === hitPosition) {
             result++
             score.textContent = result
-        })
+        }
     })
-}
+})
 
 function moveDevil() {
     let timerId = null
     timerId = setInterval(randomSquare, 1000)
 }
-
 moveDevil()
 function countDown() {
     currentTime--
