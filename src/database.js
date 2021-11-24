@@ -11,10 +11,11 @@ const stmt = db.prepare(`SELECT name FROM sqlite_master WHERE type='table' and n
 let row = stmt.get();
 if (row === undefined) {
 // Echo information about what you are doing to the console.
-    console.log('Your database appears to be empty. I will initialize it now.');
+    console.log('Your database appears to be empty. Initializing it now.');
 // Set a const that will contain your SQL commands to initialize the database.
+// Include constraint that user must be unique
     const sqlInit = `
-        CREATE TABLE userinfo ( id INTEGER PRIMARY KEY, user TEXT, pass TEXT, email TEXT, name TEXT, year TEXT );
+        CREATE TABLE userinfo ( id INTEGER PRIMARY KEY, user TEXT, pass TEXT, email TEXT, name TEXT, year TEXT, unique(user) );
 		INSERT INTO userinfo (user, pass, email, name, year) VALUES ('admin','bdc87b9c894da5168059e00ebffb9077', 'admin@test.com', 'Sam Anthony', '2023')
     `;
 // Execute SQL commands that we just wrote above.

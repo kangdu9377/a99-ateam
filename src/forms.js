@@ -61,45 +61,51 @@ window.addEventListener("load", function () {
     });
 
 
+    // Get List of Users
+    function getUsers( form ) {
+        const sendRequest = new XMLHttpRequest();
+        sendRequest.addEventListener("error", function(event){
+            alert('Accessing users unsuccessful! Please try again.');
+        });
 
-    // function getUsers( form ) {
-    //     const sendRequest = new XMLHttpRequest();
-    //     sendRequest.addEventListener("error", function(event){
-    //         alert('Submission unsuccessful! Please try again.');
-    //     });
-    //     sendRequest.addEventListener("load", function(event){
-    //         alert('Users were fetched!');
-    //     });
-    //     sendRequest.open("GET", "http://localhost:5000/app/users");
-    //     sendRequest.send();
-    //     console.log(sendRequest.response);
-    // }
+        sendRequest.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // alert(sendRequest.responseText);
+                document.getElementById("allUsers").innerHTML = sendRequest.responseText;
+            }
+        }
+        sendRequest.open("GET", "http://localhost:5000/app/users");
+        sendRequest.send();        
+    };
 
-    // const allUsers = document.getElementById("usersButton");
-    // allUsers.addEventListener("click", function(event){
-    //     event.preventDefault();
-    //     getUsers(this)
-    // })
+    const allUsers = document.getElementById("usersButton");
+    allUsers.addEventListener("click", function(event){
+        event.preventDefault();
+        getUsers(this)
+    });
 
 
-    // Existing User Sign In
-    // function getData( form ) {
-    //     const sendRequest = new XMLHttpRequest();
-    //     const existingUserInfo = new URLSearchParams(new FormData( form ));
-    //     sendRequest.addEventListener("error", function(event){
-    //         alert('Login unsuccessful!');
-    //     });
-    //     sendRequest.addEventListener("load", function(event){
-    //         alert('Logic successful!');
-    //     });
-    //     sendRequest.open("GET", "http://localhost:5000/app/user/login/");
-    //     sendRequest.send( existingUserInfo );
-    //     return sendRequest.responseText;
-    // }
+    // Get Personal Data
+    function getUserdata( form ) {
+        const sendRequest = new XMLHttpRequest();
+        const userInfo = new URLSearchParams(new FormData( form ));
+        sendRequest.addEventListener("error", function(event){
+            alert('Accessing users unsuccessful! Please try again.');
+        });
 
-    // const existinguser = document.getElementById("login");
-    // existinguser.addEventListener("submit", function(event){
-    //     event.preventDefault();
-    //     console.log(getData(this));
-    // })
+        sendRequest.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // alert(sendRequest.responseText);
+                document.getElementById("myData").innerHTML = sendRequest.responseText;
+            }
+        }
+        sendRequest.open("GET", "http://localhost:5000/app/login/user");
+        sendRequest.send( userInfo );       
+    };
+
+    const selfUser = document.getElementById("login");
+    selfUser.addEventListener("submit", function(event){
+        event.preventDefault();
+        getUserdata(this);
+    });
 });

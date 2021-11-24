@@ -27,5 +27,6 @@ Users can press a button to add themselves to the database of high scorers after
 
 ## Pressing Issues
 - How to see data from XML GET requests
+  - look at his examples from A04 to see how he got it to the console and adapt
 - use form to stay logged in and have a sign in / sign out w global var
   - will need global vars for username and boolean of logged in or not

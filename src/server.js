@@ -34,7 +34,6 @@ app.get("/app/", (req, res, next) => {
 // Define other CRUD API endpoints using express.js and better-sqlite3
 // CREATE a new user (HTTP method POST) at endpoint /app/new/
 app.post("/app/new/user", (req, res, next) => {
-	// alert(req);
 	var data = {
 		user: req.body.user,
 		email: req.body.email,
@@ -99,24 +98,20 @@ app.delete("/app/deleting/user", (req, res) => {
 	res.status(200).json({"message":`1 record deleted: User ${data.user} (200)`});
 });
 
+
+// READ a single user (HTTP method GET) at endpoint /app/user/login
+app.get("/app/login/user", (req, res) => {	
+    var data = {
+		user: req.body.user,
+		pass: req.body.pass ? md5(req.body.pass) : null
+	}
+	const stmt = db.prepare("SELECT * FROM userinfo WHERE user = ?").get(data.user);
+	res.status(200).json(stmt);
+});
+
+
 // Default response for any other request
 app.use(function(req, res){
 	res.json({"message":"Your API is working!"});
     res.status(404);
 });
-
-
-
-//////////////////////////// IN PROGRESS ////////////////////////////////////////////
-
-
-// READ a single user (HTTP method GET) at endpoint /app/user/login
-app.get("/app/user/login", (req, res) => {	
-    var data = {
-		user: req.body.user,
-		pass: req.body.pass ? md5(req.body.pass) : null
-	}
-	const stmt = db.prepare("SELECT COUNT(*) FROM userinfo WHERE user = ?").get(data.user);
-    console.log(stmt);
-});
-
