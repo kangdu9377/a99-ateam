@@ -38,8 +38,11 @@ window.addEventListener("load", function () {
 
     // Delete User
     function deleteData( form ) {
+        var deletePassword = form.pass.value;
+        let deleteInfo = new URLSearchParams("");
+        deleteInfo.append('user', thisUser.user);
+        deleteInfo.append('pass', deletePassword);
         const sendRequest = new XMLHttpRequest();
-        const deleteInfo = new URLSearchParams(new FormData( form ));
         sendRequest.addEventListener("error", function(event){
             alert('Deletion unsuccessful! Please try again.');
         });
@@ -102,7 +105,7 @@ window.addEventListener("load", function () {
     });
 
 
-    // Get Personal Data
+    // Login
     function getUserdata( form ) {
         const sendRequest = new XMLHttpRequest();
         const userInfo = new URLSearchParams(new FormData( form ));
@@ -152,7 +155,7 @@ window.addEventListener("load", function () {
         }
     });
 
-    // Show User Data
+    // Show Profile
     const showData = document.getElementById("showData");
     showData.addEventListener("click", function(event){
         event.preventDefault();

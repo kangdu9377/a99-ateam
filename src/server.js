@@ -52,24 +52,6 @@ app.get("/app/users", (req, res) => {
 	res.status(200).json(stmt);
 });
 
-// // READ a single user (HTTP method GET) at endpoint /app/user/:id
-// app.get("/app/user/:id", (req, res) => {	
-// 	const stmt = db.prepare("SELECT * FROM userinfo WHERE id = ?").get(req.params.id);
-// 	res.status(200).json(stmt);
-// });
-
-// // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
-// app.patch("/app/update/user/:id", (req, res) => {
-// 	var data = {
-// 		user: req.body.user,
-// 		email: req.body.email,
-// 		pass: req.body.pass ? md5(req.body.pass) : null,
-// 		id: req.params.id
-// 	}
-// 	const stmt = db.prepare("UPDATE userinfo SET user = COALESCE(?,user), email = COALESCE(?,email), pass = COALESCE(?,pass) WHERE id = ?")
-// 	const info = stmt.run(data.user, data.email, data.pass, data.id)
-// 	res.status(200).json({"message":`1 record updated: ID ${req.params.id} (200)`});
-// });
 
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/updating/user/
 app.patch("/app/updating/user", (req, res) => {
@@ -83,11 +65,6 @@ app.patch("/app/updating/user", (req, res) => {
 	res.status(200).json({"message":`1 record updated: User ${data.user} (200)`});
 });
 
-// // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id 
-// app.delete("/app/delete/user/:id", (req, res) => {
-// 	const stmt = db.prepare("DELETE FROM userinfo WHERE id = ?").run([req.params.id]);
-// 	res.status(200).json({"message":`1 record deleted: ID ${req.params.id} (200)`});
-// });
 
 // DELETE a single user by username and password (HTTP method DELETE) at endpoint /app/deleting/user
 app.delete("/app/deleting/user", (req, res) => {
