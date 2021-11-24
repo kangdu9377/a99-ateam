@@ -43,8 +43,6 @@ app.post("/app/new/user", (req, res, next) => {
 	const stmt = db.prepare('INSERT INTO userinfo (user, pass, email) VALUES (?, ?, ?)');
 	const info = stmt.run(data.user, data.pass, data.email);
 	res.status(201).json({"message":info.changes+" record created: ID "+info.lastInsertRowid+" (201)"});
-	// const stmt = db.prepare('INSERT INTO userinfo (user, pass) VALUES (?, ?)').run([req.body.user],[md5(req.body.pass)]);
-	// res.status(200).json({"message":`1 record created: ID 3 (201)`});
 })
 
 // READ a list of all users (HTTP method GET) at endpoint /app/users/
@@ -72,10 +70,33 @@ app.patch("/app/update/user/:id", (req, res) => {
 	res.status(200).json({"message":`1 record updated: ID ${req.params.id} (200)`});
 });
 
+// UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
+app.patch("/app/updating/user", (req, res) => {
+	var data = {
+		user: req.body.user,
+		pass: req.body.pass ? md5(req.body.pass) : null,
+		newuser: req.body.newuser
+	}
+	const stmt = db.prepare("UPDATE userinfo SET user = COALESCE(?,user) WHERE user = ?")
+	const info = stmt.run(data.newuser, data.user)
+	res.status(200).json({"message":`1 record updated: User ${data.user} (200)`});
+});
+
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id 
 app.delete("/app/delete/user/:id", (req, res) => {
 	const stmt = db.prepare("DELETE FROM userinfo WHERE id = ?").run([req.params.id]);
 	res.status(200).json({"message":`1 record deleted: ID ${req.params.id} (200)`});
+});
+
+// DELETE a single user by username and password (HTTP method DELETE) at endpoint /app/deleting/user
+app.delete("/app/deleting/user", (req, res) => {
+    var data = {
+		user: req.body.user,
+		pass: req.body.pass ? md5(req.body.pass) : null
+	}
+	const stmt = db.prepare("DELETE FROM userinfo WHERE user = ? AND pass = ?")
+    const info = stmt.run(data.user, data.pass);
+	res.status(200).json({"message":`1 record deleted: User ${data.user} (200)`});
 });
 
 // Default response for any other request
@@ -83,3 +104,19 @@ app.use(function(req, res){
 	res.json({"message":"Your API is working!"});
     res.status(404);
 });
+
+
+
+//////////////////////////// IN PROGRESS ////////////////////////////////////////////
+
+
+// READ a single user (HTTP method GET) at endpoint /app/user/login
+app.get("/app/user/login", (req, res) => {	
+    var data = {
+		user: req.body.user,
+		pass: req.body.pass ? md5(req.body.pass) : null
+	}
+	const stmt = db.prepare("SELECT COUNT(*) FROM userinfo WHERE user = ?").get(data.user);
+    console.log(stmt);
+});
+
