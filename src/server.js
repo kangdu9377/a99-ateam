@@ -99,13 +99,13 @@ app.delete("/app/deleting/user", (req, res) => {
 });
 
 
-// READ a single user (HTTP method GET) at endpoint /app/user/login
-app.get("/app/login/user", (req, res) => {	
+// READ a single user (HTTP method GET) at endpoint /app/login/user
+app.post("/app/login/user", (req, res) => {	
     var data = {
 		user: req.body.user,
 		pass: req.body.pass ? md5(req.body.pass) : null
 	}
-	const stmt = db.prepare("SELECT * FROM userinfo WHERE user = ?").get(data.user);
+	const stmt = db.prepare("SELECT * FROM userinfo WHERE user = ? AND pass = ?").get(data.user, data.pass);
 	res.status(200).json(stmt);
 });
 

@@ -99,11 +99,11 @@ window.addEventListener("load", function () {
                 document.getElementById("myData").innerHTML = sendRequest.responseText;
             }
         }
-        sendRequest.open("GET", "http://localhost:5000/app/login/user");
-        sendRequest.send( userInfo );       
+        sendRequest.open("POST", "http://localhost:5000/app/login/user");
+        sendRequest.send( userInfo );
     };
 
-    const selfUser = document.getElementById("login");
+    const selfUser = document.getElementById("loginForm");
     selfUser.addEventListener("submit", function(event){
         event.preventDefault();
         getUserdata(this);
