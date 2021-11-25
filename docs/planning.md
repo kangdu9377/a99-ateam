@@ -1,9 +1,9 @@
 # Planning for A Team
 
-Team Members: Sam Anthony, Arja Kaushal, Sarah McCormick, Michael Alcorn
+Team Members: Sam Anthony, Arja Kaushal, Sarah McCormick, Michael Alcorn, Kang Du
 
 Inital Roles:
-- Back End: Sam Anthony
+- Back End: Sam Anthony, Kang Du
 - Game Mechanics: Sarah McCormick
 - Front End & Design: Arja Kaushal and Michael Alcorn
 
