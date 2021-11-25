@@ -63,7 +63,8 @@ window.addEventListener("load", function () {
     // Updating User
     function updateData( form ) {
         const sendRequest = new XMLHttpRequest();
-        const updateInfo = new URLSearchParams(new FormData( form ));
+        var updateInfo = new URLSearchParams(new FormData( form ));
+        updateInfo.append('user', thisUser.user);
         sendRequest.addEventListener("error", function(event){
             alert('Changes were unsuccessful! Please try again.');
         });
@@ -115,8 +116,6 @@ window.addEventListener("load", function () {
 
         sendRequest.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                // alert(sendRequest.responseText);
-                // document.getElementById("myData").innerHTML = sendRequest.response;
                 thisUser = JSON.parse(sendRequest.response);
                 if(loggedIn){
                     alert("Logging Out");

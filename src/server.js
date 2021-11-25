@@ -60,8 +60,8 @@ app.patch("/app/updating/user", (req, res) => {
 		pass: req.body.pass ? md5(req.body.pass) : null,
 		newuser: req.body.newuser
 	}
-	const stmt = db.prepare("UPDATE userinfo SET user = COALESCE(?,user) WHERE user = ?")
-	const info = stmt.run(data.newuser, data.user)
+	const stmt = db.prepare("UPDATE userinfo SET user = COALESCE(?,user) WHERE user = ? AND pass = ?")
+	const info = stmt.run(data.newuser, data.user, data.pass)
 	res.status(200).json({"message":`1 record updated: User ${data.user} (200)`});
 });
 
