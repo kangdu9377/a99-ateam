@@ -3,6 +3,7 @@
 - can click devil as many times as you want, needs to be delay
 - after final score, everything should stop
   - right now can still increase score, 0 seconds left, devil still moving
+- start/end button
 
 # Front End Changes
 
