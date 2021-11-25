@@ -52,3 +52,15 @@ And that is about all you need to get started.
 All the rest of the assignment instructions are available at: https://comp426.johndmart.in/assignments/99
 
 Good skill, and have fun with this!
+
+# Begin Student README.md
+
+**Dependencies**:
+- better-sqlite3
+- browser-sync
+- concurrently
+- cors
+- express
+- md5
+
+**How to Run**: npm run start
