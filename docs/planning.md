@@ -24,8 +24,9 @@ Inital Roles:
     - add bulma framework
 - form for creating/updating users
 
-## BACK_END: Sam
-- need to make database with usernames, passwords, high score
+## BACK_END: Sam, Kang
+- need to make database with usernames, passwords, email, etc
+- need to make database of high scorers
 
 ## GAME: Sarah
 - have duke devil be the mole
